@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title><%= title %></title>
+</head>
+<%- include('../pages/head') %>
+<%- include('../pages/header') %>
+<body>
+    <div class="from-message">
+        <h3 class="title-from"><%= title %></h3>
+
+        <ul>
+            <li>
+                <h4><strong>Author:</strong> <%= message.user %></h4>
+                <p><strong>Message:</strong> <%= message.text %></p>
+                <h4 class="added-on"><strong>Added on:</strong> <%= message.added.toLocaleString() %></h4>
+                <a class="back-message" href="/messages">Back</a>
+            </li>
+        </ul>
+    </div>
+    
+   
+  
+</body>
+<%- include('../pages/footer') %>
+</html>

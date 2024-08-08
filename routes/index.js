@@ -1,6 +1,7 @@
 const express = require('express');
 const messageRouter = express.Router();
 
+
 const messages = [
    { text: "Hi there!", user: "Amando", added: new Date() },
    { text: "Nice to meet you!", user: "Charles",added: new Date()},
@@ -26,8 +27,26 @@ messageRouter.get('/new', (req,res)=>{
 });
 
 messageRouter.post('/new', (req, res)=>{
-   res.send("Create New Messages")
-})
+   const {author, messageText} =req.body;
 
+   if(author && messageText){
+      messages.push({text: messageText, user: author, added: new Date()});
+
+      res.redirect('/messages');
+   }else{
+      res.status(400).send('All fields are required');
+   }     
+});
+
+// Route to handle displaying a single message by its index
+messageRouter.get('/messages/:id', (req, res)=>{
+   const messageId = parseInt(req.params.id, 10);
+   if(messageId >= 0 && messageId < messages.length){
+      const message =messages[messageId];
+      res.render('message/detail', {title: `Message from ${message.user}`, message});
+   }else{
+      res.status(404).send('Message not found')
+   }
+})
  
 module.exports = messageRouter;

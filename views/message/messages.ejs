@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
     <title>Messages</title>
 </head>
 
@@ -11,8 +13,13 @@
 <%- include('../pages/header') %>
 <body>
     <h1 class="title-bar"> <%= title %> </h1>
+
+    <ul class="message nav col-md-4 justify-content-center mb-4">
+        <li class="nav-item"><a class ="add-message" href="/new" class="nav-link px-2"><i class="fa-solid fa-plus"></i>New Message</a></li>
+    </ul>
+
     <ul>
-        <% posts.forEach((post)=> { %>
+        <% posts.forEach((post, index)=> { %>
             <li>
                 <h2>
                     <%= post.user %>
@@ -23,6 +30,9 @@
                 <h2>
                     <%= post.added%>
                 </h2>
+                <form action="/messages/<%= index %>" method="GET" style="display: inline;">
+                    <button class="btn-open" type="submit">Open</button>
+                </form>
             </li>
             <hr />
         <% }) %>
