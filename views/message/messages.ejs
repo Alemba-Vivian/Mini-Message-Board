@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Messages</title>
+</head>
+
+<%- include('../pages/head') %>
+<%- include('../pages/header') %>
+<body>
+    <h1 class="title-bar"> <%= title %> </h1>
+    <ul>
+        <% posts.forEach((post)=> { %>
+            <li>
+                <h2>
+                    <%= post.user %>
+                </h2>
+                <p>
+                    <%= post.text %>
+                </p>
+                <h2>
+                    <%= post.added%>
+                </h2>
+            </li>
+            <hr />
+        <% }) %>
+    </ul>
+</body>
+<%- include('../pages/footer') %>
+</html>
